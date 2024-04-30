@@ -1,9 +1,45 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Path
 from typing import Union, List
 from enum import Enum
 from pydantic import BaseModel
 
 app = FastAPI()
+
+# @app.get("/items/{item_id}")
+# async def read_items(
+#         item_id: int = Path(title="The ID of the item to get"),
+#         q: Union[str, None] = Query(default=None, alias="item-query"),
+# ):
+#     results = {"item_id": item_id}
+#     if q:
+#         results.update({"q": q})
+#     return results
+
+# @app.get("/items/{item_id}")
+# async def read_item(q: str, item_id: int = Path(title="The ID of the item to get")):
+#     results = {"item_id": item_id}
+#     if q:
+#         results.update({"q": q})
+#     return results
+
+# @app.get("/items/{item_id}")
+# async def read_item(
+#         *,
+#         item_id: int = Path(title="The ID of the item to get", ge=0, le=10000),
+#         q: str,
+#         size: float = Query(gt=0, lt=10.5),
+# ):
+#     results = {"item_id": item_id}
+#     if q:
+#         results.update({"q": q})
+#     return results
+
+# @app.get("/items/{item_id}")
+# async def read_item(*, item_id: int = Path(title="The ID of the item to get", gt=0, le=1000), q: str):
+#     results = {"item_id": item_id}
+#     if q:
+#         results.update({"q": q})
+#     return results
 
 # @app.get("/items/")
 # async def read_items(q: Union[str, None] = None):
@@ -34,18 +70,18 @@ app = FastAPI()
 #         results.update({"q": q})
 #     return results
 
-@app.get("/items/")
-async def read_items(
-        q: Union[str, None] = Query(
-            default=None,
-            title="Query String",
-            description="Query String for the items to search in the database that have a good match",
-            min_length=3),
-):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results.update({"q": q})
-    return results
+# @app.get("/items/")
+# async def read_items(
+#         q: Union[str, None] = Query(
+#             default=None,
+#             title="Query String 입니다.",
+#             description="Query String for the items to search in the database that have a good match",
+#             min_length=3),
+# ):
+#     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+#     if q:
+#         results.update({"q": q})
+#     return results
 
 # @app.get("/items/")
 # async def read_items(q: Union[str, None] = Query(
