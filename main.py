@@ -1,9 +1,89 @@
 from fastapi import FastAPI, Query, Path, Body
-from typing import Union, List
+from typing import Union, List, Set, Dict
 from enum import Enum
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, HttpUrl
+from typing_extensions import Annotated
 
 app = FastAPI()
+
+@app.post("/index-weights/")
+async def create_index_weights(weights: Dict[int, float]):
+    return weights
+
+# class Image(BaseModel):
+#     url: HttpUrl
+#     name: str
+#
+# class Item(BaseModel):
+#     name: str
+#     description: str | None = None
+#     price: float
+#     tax: Union[float, None] = None
+#     tags: Set[str] = set()
+#     # image: Union[Image, None] = None
+#     images: Union[List[Image], None] = None
+#
+# class Offer(BaseModel):
+#     name: str
+#     description: str | None = None
+#     price: float
+#     items: List[Item]
+#
+# @app.post("/images/multiple/")
+# async def create_multiple_images(images: List[Image]):
+#     return images
+#
+# @app.post("/offers/")
+# async def create_offer(offer: Offer):
+#     return offer
+#
+# @app.put("/items/{item_id}")
+# async def update_item(item_id: int, item: Item):
+#     results = {"item_id": item_id, "item": item}
+#     return results
+
+# class Image(BaseModel):
+#     url: str
+#     name: str
+#
+# class Item(BaseModel):
+#     name: str
+#     description: str | None =  None
+#     price: float
+#     tax: float | None = None
+#     tags: Set[str] = set()
+#     image: Image | None = None
+#
+# @app.put("/items/{item_id}")
+# async def update_item(item_id: int, item: Item):
+#     results = {"item_id": item_id, "item": item}
+#     return results
+
+# class Item(BaseModel):
+#     name: str
+#     description: Union[str, None] = None
+#     price: float
+#     tax: Union[float, None] = None
+#     tags: Set[str] = set()
+#     # tags: list = []
+#     # tags: List[str] = []
+# @app.put("/items/{item_id}")
+# async def update_item(item_id: int, item: Item):
+#     results = {"item_id": item_id, "item": item}
+#     return results
+
+# class Item(BaseModel):
+#     name: str
+#     description: str | None = Field(
+#         default=None, title="The description of the item", max_length=300
+#     )
+#     price: float = Field(gt=0, description="The price must be greater than zero")
+#     tax: float | None = None
+#
+# @app.put("/items/{item_id}")
+# async def update_item(item_id: int, item: Annotated[Item, Body(embed=True)]):
+#     results = {"item_id": item_id, "item": item}
+#     return results
 
 # class Item(BaseModel):
 #     name: str
